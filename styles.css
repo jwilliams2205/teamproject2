@@ -1,0 +1,66 @@
+body{
+    font-family: sans-serif;
+    background-color: blue;
+}
+
+body > div, form {
+	overflow: hidden;
+	width: 35em;
+}
+
+h2{
+    text-align: center;
+    color: aquamarine;
+}
+
+a{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    color: aliceblue;
+    text-align: center;
+}
+
+a:visited{
+    color: azure;
+}
+
+a:hover{
+    background-color: darkblue;
+}
+
+
+fieldset {
+	background-color: skyblue;
+	border: 2px outset gray;
+	border-radius: 10px;
+}
+
+legend {
+	background-color: white;
+	border: 2px outset gray;
+	padding: 0.2em;
+}
+
+form{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+fieldset strong,
+ul strong,
+fieldset label.left,
+fieldset .column {
+	float: left;
+	width: 11em;
+}
+
+#headerimg{
+    text-align: center;
+    width: 20%;
+    height: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
