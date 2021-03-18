@@ -10,12 +10,16 @@
     <body>
         <?php
             session_start();
-            $_SESSION['qFlag'] = FALSE;
+            if(!isset($_SESSION['qFlag'])){
+                $_SESSION['qFlag'] = FALSE;
+            }
         ?>
         <img src = "jeopheader.jpg" alt = "header" id = "headerimg"/>
         <?php
             include 'common.php';
-            $_SESSION['questionBank'] = populateQuestions();
+            if(!isset($_SESSION['questionBank'])){
+                $_SESSION['questionBank'] = populateQuestions();
+            }
             if(!isset($_SESSION['points'])){
                 $_SESSION['points'] = 0;
                 echo '<h2>You currently have 0 points.</h2>';
@@ -25,11 +29,14 @@
             }
             if(isset($_SESSION['answerFlag'])){
                 if($_SESSION['answerFlag'] == 0){
-                    echo '<h2>Sorry, wrong answer</h2>, you lose points.</h2>';
+                    echo '<h2>Sorry, wrong answer, you lose points.</h2>';
                 }
                 else{
                     echo '<h2>Correct! Enjoy your new points!</h2>';
                 }
+            }
+            if($_SESSION['qFlag']==TRUE){
+                echo "<h3><strong>You have already answered this question, please choose another</strong></h3>";
             }
         ?>
         <div id = "questionMaster">
@@ -69,8 +76,31 @@
         </div>
         <div class = "clearDiv"></div>
         <?php
-            if($_SESSION['qFlag']==TRUE){
-                echo "<h2>You have already answered this question, please choose another</h2>";
+            $allAnswered = TRUE;
+            for($i = 0; $i < count($_SESSION['questionBank']); $i++){
+                if($_SESSION['questionBank'][$i][7]==0){
+                    $allAnswered = FALSE;
+                }
+            }
+            if($allAnswered == TRUE){
+                $scores = array(
+                    $_SESSION['name'], $_SESSION['points']
+                );
+                $file = fopen("leaderboard.txt",'a+');
+                fputcsv($file,$scores);
+                rewind($file);
+                $sortedLeaderboard = [];
+                while (($line = fgetcsv($file)) !== FALSE) {
+                    $sortedLeaderboard[$line[0]] = $line[1]; 
+                  }
+                  fclose($file);
+                asort($sortedLeaderboard);
+                echo "<h2>Leaderboard:</h2><br>";
+                foreach($sortedLeaderboard as $leaderboardName => $leaderboardValue) {
+                    echo '<p>'. $leaderboardName . " scored " . $leaderboardValue . " points.</p>";
+                    echo "<br>";
+                  }
+    
             }
         ?>
         <form action = "game-submit.php" method = "POST">

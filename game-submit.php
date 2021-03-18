@@ -15,8 +15,9 @@
             $_SESSION['questionNumberInput'] = $questionNum;
             if(isset($_SESSION['questionBank'])){
                 $questionBank = $_SESSION['questionBank'];
-                if($questionBank[$questionNum][7]==1){
+                if($_SESSION['questionBank'][$questionNum][7]==1){
                     $_SESSION['qFlag'] = TRUE;
+                    header("Location: game.php");
                 }
                 else{
                     echo '

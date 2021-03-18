@@ -15,12 +15,15 @@
                 $questionBank = $_SESSION['questionBank'];
                 if($_POST['answers'] == $questionBank[$questionNum][6]){
                     $_SESSION['points'] = $_SESSION['points'] + $questionBank[$questionNum][0];
+                    $_SESSION['questionBank'][$questionNum][7]=1;
                     $_SESSION['answerFlag'] = 1;
+                    $_SESSION['qFlag'] = FALSE;
                     header('Location: game.php');
                 }
                 else{
                     $_SESSION['points'] = $_SESSION['points'] - $questionBank[$questionNum][0];
                     $_SESSION['answerFlag'] = 0;
+                    $_SESSION['questionBank'][$questionNum][7]=1;
                     header('Location: game.php');
                 }
             }
