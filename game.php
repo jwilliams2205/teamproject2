@@ -10,13 +10,28 @@
     <body>
         <?php
             session_start();
+            $_SESSION['qFlag'] = FALSE;
         ?>
         <img src = "jeopheader.jpg" alt = "header" id = "headerimg"/>
         <?php
             include 'common.php';
             $_SESSION['questionBank'] = populateQuestions();
+            if(!isset($_SESSION['points'])){
+                $_SESSION['points'] = 0;
+                echo '<h2>You currently have 0 points.</h2>';
+            }
+            else{
+                echo '<h2>You have ' . $_SESSION['points'] . ' points!</h2>';
+            }
+            if(isset($_SESSION['answerFlag'])){
+                if($_SESSION['answerFlag'] == 0){
+                    echo '<h2>Sorry, wrong answer</h2>, you lose points.</h2>';
+                }
+                else{
+                    echo '<h2>Correct! Enjoy your new points!</h2>';
+                }
+            }
         ?>
-
         <div id = "questionMaster">
             <div class = "questionSection">
                 <div class = "question">
@@ -53,11 +68,16 @@
                 ?>
         </div>
         <div class = "clearDiv"></div>
-        <form action = "questionSubmit" method = "POST">
+        <?php
+            if($_SESSION['qFlag']==TRUE){
+                echo "<h2>You have already answered this question, please choose another</h2>";
+            }
+        ?>
+        <form action = "game-submit.php" method = "POST">
             <fieldset>
                 <legend>Choose a Question by inputing the number of your question that follows the 'Q'</legend>
                 <label for = "questionNumberInput"><strong>Q:</strong>
-                <input type = "text" size = "2" max = "2">
+                <input type = "text" name = "questionNumberInput" size = "2" max = "2">
                 <input type = "submit" value = "Let's see what your question is..">
             </fieldset>
         </form>
