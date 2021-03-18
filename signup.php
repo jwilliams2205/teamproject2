@@ -29,7 +29,7 @@
                 <input type = "password" size = "16" name = "password"/></br>
                 <label for = "Name"><strong>Name:</strong></label>
                 <input type = "text" size = "16" name = "name"/></br>
-                <input type = "submit" value = "Login"/>
+                <input type = "submit" value = "Sign Up!"/>
             </fieldset>
         </form>
     </body>

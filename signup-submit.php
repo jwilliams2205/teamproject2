@@ -11,7 +11,7 @@
         <?php
             session_start();
             $file = fopen('users.txt','a');
-            $data = array(
+            $dataPush = array(
                 $_POST['username'],
                 $_POST['password'],
                 $_POST['name']
@@ -24,21 +24,24 @@
             while(($data = fgetcsv($file)) !== FALSE){
                 $users[] = $data;
             }
-            $signupFail = FALSE;
+            $_SESSION['signupFail'] = FALSE;
             for($i = 0; $i < count($users); $i++){
                 if(!isset($users[$i][0])){ //Error handling in case of bad pushes to the csv.
                     continue;
                 }
                 elseif($_POST['username'] == $users[$i][0]){
-                        $signupFail = TRUE;
+                        $_SESSION['signupFail'] = TRUE;
                         header("Location: signup.php");
                 }
                 else{
                     continue;
                 }
             }
+            fclose($file);
+            $file = fopen("users.txt", 'w');
+            print_r($dataPush);
+            fputcsv($file, $dataPush);
             header("Location: index.php");
-            fputcsv($file,$data);
             fclose($file);
         ?>
     </body>

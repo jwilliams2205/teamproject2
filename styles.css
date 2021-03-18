@@ -31,15 +31,18 @@ a:hover{
 
 
 fieldset {
-	background-color: skyblue;
-	border: 2px outset gray;
+	background-color: #212b85;
+	border: 2px outset rgb(226, 224, 74);
 	border-radius: 10px;
+    border-style: groove;
 }
 
 legend {
 	background-color: white;
+    border-style: groove;
 	border: 2px outset gray;
 	padding: 0.2em;
+    text-align: center;
 }
 
 form{
@@ -63,4 +66,48 @@ fieldset .column {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+#questionMaster {
+    width: 1300px;
+    height: auto;
+    position: relative;
+    top: 0px;
+    margin: auto;
+    padding: 1px 8px 10px;
+}
+
+.questionSection {
+    height: 50px;
+    padding: 3%;
+    margin: auto;
+}
+
+.question {
+    float: left;
+    background-color:  #212b85;
+    width: 200px;
+    height: 50px;
+    padding: 30px 8px 10px;
+    margin: 5px 5px;
+    text-align: center;
+    box-shadow: 0 0 10px rgb(0,0,0);
+    border: 5px groove rgb(20, 20, 20);
+    border-radius: 12px;
+    vertical-align: middle;
+}
+
+.qText{
+    color: #cfcfcfde;
+    font-size: 22px;
+    width: 265px;
+    box-sizing: border-box;
+}
+
+.qText.category{
+    color: rgb(247, 247, 127);
+}
+
+.clearDiv{
+    clear:both;
 }
