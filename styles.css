@@ -69,6 +69,7 @@ a:hover{
 
 
 fieldset {
+	color: red ;
 	background-color: #212b85;
 	border: 2px outset rgb(226, 224, 74);
 	border-radius: 10px;
