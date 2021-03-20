@@ -76,7 +76,7 @@ fieldset {
 }
 
 legend {
-	background-color: white;
+	background-color: #4CAF50;
     border-style: groove;
 	border: 2px outset gray;
 	padding: 0.2em;
@@ -140,10 +140,15 @@ fieldset .column {
     font-size: 22px;
     width: 265px;
     box-sizing: border-box;
+    border-style: solid;
+    border-radius: 12px;
+    border-color: #66cdaa;
+    border-radius: 15px;
 }
 
 .qText.category{
     color: rgb(247, 247, 127);
+    text-align: center;
 }
 
 .clearDiv{
