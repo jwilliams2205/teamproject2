@@ -12,7 +12,6 @@
         }
   
         @keyframes colorchange {
-            0%   {background: white;}
             25%  {background: yellow;}
             50%  {background: blue;}
             75%  {background: green;}
