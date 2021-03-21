@@ -6,6 +6,7 @@
         }
      
         body {
+	    background-image: url(kbb.jpg);
             animation: colorchange 50s;
             -webkit-animation: colorchange 100s;
         }
