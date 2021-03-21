@@ -69,10 +69,12 @@ a:visited{
 a:hover{
     border: 1px solid #ddd;
     padding: 2rem;
+    width: 350px;
     background-color: #3e8e41;
     box-shadow: 0 5px #666;
     box-sizing: border-box;
     border-radius: 10px;
+    border-style: solid;
 }
 
 
