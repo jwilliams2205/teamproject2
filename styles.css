@@ -1,23 +1,19 @@
-<style>
-        h1 {
+h1 {
             text-align: center;
             font-family: 'Courier New', Courier, monospace;
             letter-spacing: 5px; 
-        }
+}
      
-        body {
-	    background-image: url(kbb.jpg);
-            animation: colorchange 50s;
-            -webkit-animation: colorchange 100s;
-        }
-  
-        @keyframes colorchange {
-            25%  {background: yellow;}
-            50%  {background: blue;}
-            75%  {background: green;}
-            100% {background: black;}
-        }
+body {
+background: url(kbb.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 
+}
+  
 body > div, form {
 	overflow: hidden;
 	width: 35em;
@@ -25,7 +21,7 @@ body > div, form {
 
 h2{
    background-color:  #1d2675;
-    color: #0f0;
+    color: 	rgb(24, 161, 202);
     text-align: center;
     box-shadow: 0 0 10px rgb(0,0,0);
     border: 5px groove silver;
@@ -37,9 +33,21 @@ h2{
     margin-right: auto;
 }
 
+#leaderboard{
+
+    color: #b33027;
+    border-style: dotted;
+    border-color: aquamarine;
+    border: 5px groove silver;
+    border-radius: 12px;
+    display: block;
+    margin: auto;
+    background-color: #1d2675;
+
+}
+
 h3{
-    font-family: Acme, Arial, sans-serif;
-    color: red;
+    color: rgb(24, 161, 202);
     text-align: center;
 }
 
@@ -56,34 +64,28 @@ a{
     margin-right: auto;
     color: aliceblue;
     text-align: center;
+    width: 20%;
 }
 
 a:visited{
-        color: pink;
-	font-family: 'Segoe UI', sans-serif;;
+    color: pink;
 	font-size: 22 pt;
 	box-sizing: border-box;
-        border-radius: 12px;
+    border-radius: 12px;
 }
 
 a:hover{
-    border: 1px solid #ddd;
-    padding: 2rem;
-    width: 350px;
-    background-color: #3e8e41;
-    box-shadow: 0 5px #666;
-    box-sizing: border-box;
-    border-radius: 10px;
-    border-style: solid;
+	background-color: #212b85;
+    color: rgb(24, 161, 202);
 }
 
 
 fieldset {
-	color: red ;
+	color: rgb(24, 161, 202) ;
 	background-color: #212b85;
 	border: 2px outset rgb(226, 224, 74);
 	border-radius: 10px;
-        border-style: groove;
+    border-style: groove;
 }
 
 input[type="submit"] {
@@ -97,12 +99,12 @@ legend {
 	color: orange;
 	font-size: 18 pt;
 	box-sizing: border-box;
-        border-radius: 12px;
-	background-color: #4CAF50;
-        border-style: groove;
+    border-radius: 12px;
+	background-color: #212b85;
+    border-style: groove;
 	border: 2px outset gray;
 	padding: 0.2em;
-        text-align: center;
+    text-align: center;
 }
 
 form{
@@ -162,10 +164,7 @@ fieldset .column {
     font-size: 22px;
     width: 265px;
     box-sizing: border-box;
-    border-style: solid;
-    border-radius: 12px;
-    border-color: #66cdaa;
-    border-radius: 15px;
+
 }
 
 .qText.category{

@@ -16,6 +16,52 @@
         ?>
         <img src = "jeopheader.jpg" alt = "header" id = "headerimg"/>
         <?php
+
+        /*
+            This php block assumes that all questions are answered. It takes the question bank that exists in the session and
+            checks for any questions that have not been answered.
+        */
+            $allAnswered = TRUE;
+            for($i = 0; $i < count($_SESSION['questionBank']); $i++){
+                if($_SESSION['questionBank'][$i][7]==0){
+                    $allAnswered = FALSE;
+                }
+            }
+        /*
+            If all the questions are answered, it stores the players name and points in an array, then pushes it to our leaderboard.txt csv.
+            Afterwards, it initiates the sequencing for the game ending, which also displays the leaderboard.
+        */
+            if($allAnswered == TRUE){
+                $scores = array(
+                    $_SESSION['name'], $_SESSION['points']
+                );
+                $file = fopen("leaderboard.txt",'a+');
+                fputcsv($file,$scores);
+                rewind($file);
+                $sortedLeaderboard = [];
+                while (($line = fgetcsv($file)) !== FALSE) {
+                    $sortedLeaderboard[$line[0]] = $line[1]; 
+                  }
+                  fclose($file);
+                arsort($sortedLeaderboard);
+                if(isset($_SESSION['points'])){
+                    echo '<h2>GAME OVER! THANK YOU FOR PLAYING! YOUR FINAL SCORE IS ' . $_SESSION['points'] . '! SEE THE LEADERBOARD BELOW!</h2>';
+                }
+
+                echo '<div id = "leaderboard">';
+                echo "<strong><p>Leaderboard:</p></strong><br>";
+                foreach($sortedLeaderboard as $leaderboardName => $leaderboardValue) {
+                    echo '<p>'. $leaderboardName . " scored " . $leaderboardValue . " points.</p>";
+                    echo "<br>";
+                  }
+                echo '</div>';
+            }
+        ?>
+
+        <?php
+        /*
+            Populates the session question bank from the function that exists in common.php. All functions are flagged as unanswered.
+        */
             include 'common.php';
             if(!isset($_SESSION['questionBank'])){
                 $_SESSION['questionBank'] = populateQuestions();
@@ -67,7 +113,11 @@
                     </span>
                 </div>
             </div>
-            <?php populateGameRow(1,100);
+            <?php
+            /*
+                populateGameRow(startIndex,points) -- calls function to create the question numbers for each row and their given points.
+            */ 
+                populateGameRow(1,100);
                 populateGameRow(2,200);
                 populateGameRow(3,300);
                 populateGameRow(4,400);
@@ -75,34 +125,6 @@
                 ?>
         </div>
         <div class = "clearDiv"></div>
-        <?php
-            $allAnswered = TRUE;
-            for($i = 0; $i < count($_SESSION['questionBank']); $i++){
-                if($_SESSION['questionBank'][$i][7]==0){
-                    $allAnswered = FALSE;
-                }
-            }
-            if($allAnswered == TRUE){
-                $scores = array(
-                    $_SESSION['name'], $_SESSION['points']
-                );
-                $file = fopen("leaderboard.txt",'a+');
-                fputcsv($file,$scores);
-                rewind($file);
-                $sortedLeaderboard = [];
-                while (($line = fgetcsv($file)) !== FALSE) {
-                    $sortedLeaderboard[$line[0]] = $line[1]; 
-                  }
-                  fclose($file);
-                asort($sortedLeaderboard);
-                echo "<h2>Leaderboard:</h2><br>";
-                foreach($sortedLeaderboard as $leaderboardName => $leaderboardValue) {
-                    echo '<p>'. $leaderboardName . " scored " . $leaderboardValue . " points.</p>";
-                    echo "<br>";
-                  }
-    
-            }
-        ?>
         <form action = "game-submit.php" method = "POST">
             <fieldset>
                 <legend>Choose a Question by inputing the number of your question that follows the 'Q'</legend>

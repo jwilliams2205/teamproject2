@@ -20,6 +20,19 @@
                     header("Location: game.php");
                 }
                 else{
+                    /*
+                        The array $questionBank is indexed as follows:
+                            For each $questionBank[$i], there are ->
+                                [0] Points Value
+                                [1] Question
+                                [2] Answer Option A
+                                [3] Answer Option B
+                                [4] Answer Option C
+                                [5] Answer Option D
+                                [6] Correct Answer
+                                [7] Flag if question has already been answered.
+
+                    */
                     echo '
                     <h2>Question: ' . $questionBank[$questionNum][1] .'</h2>
                     <form action = "question-submit.php" method = "POST">

@@ -14,9 +14,11 @@
         <img src = "jeopheader.jpg" alt = "header" id = "headerimg"/>
         <?php
             if(isset($_SESSION['loginFail'])){
-                
+                //Notification to the user their Username and password isn not correct. 
+                //The flag is checked and unset so future login attempts/signins do not show this message unless the error is repeated.
                 if($_SESSION['loginFail'] == TRUE){
                     echo "<h2>Incorrect username and password combination, please try again.</h2>";
+                    $_SESSION['loginFail'] = FALSE;
                 }
             }
         ?>

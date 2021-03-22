@@ -1,9 +1,6 @@
-Jonathan,9000
-Jonathan,-1900
-Jonathan,-1900
-Jonathan,-1900
-Jonathan,-1900
-Jonathan,-1900
-Jonathan,-1900
-Jonathan,-1900
-Jonathan,-1900
+Jonathan,4700
+Someone,3600
+SomeoneElse,2900
+Jonathan,4700
+Jonathan,4700
+Jonathan,4700
