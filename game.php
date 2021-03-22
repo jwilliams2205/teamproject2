@@ -16,46 +16,6 @@
         ?>
         <img src = "jeopheader.jpg" alt = "header" id = "headerimg"/>
         <?php
-
-        /*
-            This php block assumes that all questions are answered. It takes the question bank that exists in the session and
-            checks for any questions that have not been answered.
-        */
-            $allAnswered = TRUE;
-            for($i = 0; $i < count($_SESSION['questionBank']); $i++){
-                if($_SESSION['questionBank'][$i][7]==0){
-                    $allAnswered = FALSE;
-                }
-            }
-        /*
-            If all the questions are answered, it stores the players name and points in an array, then pushes it to our leaderboard.txt csv.
-            Afterwards, it initiates the sequencing for the game ending, which also displays the leaderboard.
-        */
-            if($allAnswered == TRUE){
-                $scores = array(
-                    $_SESSION['name'], $_SESSION['points']
-                );
-                $file = fopen("leaderboard.txt",'a+');
-                fputcsv($file,$scores);
-                rewind($file);
-                $sortedLeaderboard = [];
-                while (($line = fgetcsv($file)) !== FALSE) {
-                    $sortedLeaderboard[$line[0]] = $line[1]; 
-                  }
-                  fclose($file);
-                arsort($sortedLeaderboard);
-                if(isset($_SESSION['points'])){
-                    echo '<h2>GAME OVER! THANK YOU FOR PLAYING! YOUR FINAL SCORE IS ' . $_SESSION['points'] . '! SEE THE LEADERBOARD BELOW!</h2>';
-                }
-
-                echo '<div id = "leaderboard">';
-                echo "<strong><p>Leaderboard:</p></strong><br>";
-                foreach($sortedLeaderboard as $leaderboardName => $leaderboardValue) {
-                    echo '<p>'. $leaderboardName . " scored " . $leaderboardValue . " points.</p>";
-                    echo "<br>";
-                  }
-                echo '</div>';
-            }
         ?>
 
         <?php
@@ -84,6 +44,47 @@
             if($_SESSION['qFlag']==TRUE){
                 echo "<h3><strong>You have already answered this question, please choose another</strong></h3>";
             }
+
+        
+        /*
+            This php block assumes that all questions are answered. It takes the question bank that exists in the session and
+            checks for any questions that have not been answered.
+        */
+        $allAnswered = TRUE;
+        for($i = 0; $i < count($_SESSION['questionBank']); $i++){
+            if($_SESSION['questionBank'][$i][7]==0){
+                $allAnswered = FALSE;
+            }
+        }
+    /*
+        If all the questions are answered, it stores the players name and points in an array, then pushes it to our leaderboard.txt csv.
+        Afterwards, it initiates the sequencing for the game ending, which also displays the leaderboard.
+    */
+        if($allAnswered == TRUE){
+            $scores = array(
+                $_SESSION['name'], $_SESSION['points']
+            );
+            $file = fopen("leaderboard.txt",'a+');
+            fputcsv($file,$scores);
+            rewind($file);
+            $sortedLeaderboard = [];
+            while (($line = fgetcsv($file)) !== FALSE) {
+                $sortedLeaderboard[$line[0]] = $line[1]; 
+              }
+              fclose($file);
+            arsort($sortedLeaderboard);
+            if(isset($_SESSION['points'])){
+                echo '<h2>GAME OVER! THANK YOU FOR PLAYING! YOUR FINAL SCORE IS ' . $_SESSION['points'] . '! SEE THE LEADERBOARD BELOW!</h2>';
+            }
+
+            echo '<div id = "leaderboard">';
+            echo "<strong><p>Leaderboard:</p></strong><br>";
+            foreach($sortedLeaderboard as $leaderboardName => $leaderboardValue) {
+                echo '<p>'. $leaderboardName . " scored " . $leaderboardValue . " points.</p>";
+                echo "<br>";
+              }
+            echo '</div>';
+        }
         ?>
         <div id = "questionMaster">
             <div class = "questionSection">

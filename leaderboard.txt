@@ -4,3 +4,5 @@ SomeoneElse,2900
 Jonathan,4700
 Jonathan,4700
 Jonathan,4700
+Jonathan,
+Jonathan,-1700
